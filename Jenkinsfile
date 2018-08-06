@@ -12,6 +12,22 @@ node {
       docker.build("arungupta/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
   }
+  
+  stage('JaCoCo') {
+            steps {
+                echo 'Code Coverage'
+                jacoco()
+            }
+        }
+        stage('Sonar') {
+            steps {
+                echo 'Sonar Scanner'
+               	//def scannerHome = tool 'SonarQube Scanner 3.0'
+			    withSonarQubeEnv('SonarQube Server') {
+			    	sh '/root/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner'
+			    }
+            }
+        }
 
   stage ('Run Application') {
     try {
