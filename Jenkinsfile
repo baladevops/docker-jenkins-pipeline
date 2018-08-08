@@ -36,7 +36,7 @@ node {
       // sh "docker run -e DB_URI=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db) webapp/docker-jenkins-pipeline:${env.BUILD_NUMBER}"
          sh '''#!/bin/sh                 
                  DB=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`
-                 docker run -e DB_URI=${DB} webapp/docker-jenkins-pipeline:${env.BUILD_NUMBER}
+                 docker run -e DB_URI=${DB} webapp/docker-jenkins-pipeline:${BUILD_NUMBER}
          '''
       // Run tests using Maven
       //dir ('webapp') {
