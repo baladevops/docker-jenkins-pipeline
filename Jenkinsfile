@@ -53,8 +53,12 @@ node {
   stage('Run Tests') {
     try {
       dir('webapp') {
-        sh "mvn test"
-        docker.build("webapp/docker-jenkins-pipeline:${env.BUILD_NUMBER}").push()
+	sh '''#!/bin/sh                 
+                 export DB_URI=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`
+                 mvn test
+         '''
+        //sh "mvn test"
+       // docker.build("webapp/docker-jenkins-pipeline:${env.BUILD_NUMBER}").push()
       }
     } catch (error) {
 
