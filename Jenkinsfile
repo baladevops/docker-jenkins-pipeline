@@ -54,7 +54,7 @@ node {
     try {
       dir('webapp') {
 	sh '''#!/bin/sh                 
-                 #export DB_URI=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`
+                 export DB_URI=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`
                  mvn test
          '''
         //sh "mvn test"
