@@ -11,10 +11,10 @@ services:
 
   app:
     build: ./webapp
-    image: arungupta/docker-jenkins-app
+    image: webapp/docker-jenkins-app
 
   app2:
-    image: arungupta/docker-jenkins-pipeline:${BUILD_NUMBER}
+    image: webapp/docker-jenkins-pipeline:${BUILD_NUMBER}
 
   unit:
     image: maven
